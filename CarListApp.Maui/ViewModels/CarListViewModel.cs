@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CarListApp.Maui.ViewModels
 {
@@ -22,6 +23,9 @@ namespace CarListApp.Maui.ViewModels
             Title = "Car List";
             this.carService = carService;
         }
+
+        [ObservableProperty]
+        bool isRefreshing;
 
         [RelayCommand]
         async Task GetCarList()
@@ -43,6 +47,7 @@ namespace CarListApp.Maui.ViewModels
             finally
             {
                 IsLoading = false;
+                IsRefreshing = false;
             }
         }
     }
